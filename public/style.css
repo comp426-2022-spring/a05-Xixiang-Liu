@@ -1,15 +1,31 @@
-div.hidden {
+/* There is very minimial style here intentionally to show how we can use the DOM to hide and show different elements to make a single page that does not have to be reloaded to navigate between views. **/
+/* This sets the active button off from the inactive buttons. */
+button.active {
+  background: black;
+  color: white;
+}
+/* This shows the active div. */
+div.active {
+/*  border: 5px solid red; */
+  display: block;
+}
+/* This hides the inactive divs */
+div.inactive {
   display: none;
 }
-
-div.active {
-  border: 5px solid red;
+/* This gets rid of the default bullets on unordered lists so we can make lists of coin images */
+ul li{
+  display: inline;
 }
-
+/* This makes the coin images roughly the size of a quarter on screen */
 img.bigcoin {
-  width: 50px;
+  width: 100px;
 }
-
+/* This would make the coin images a little smaller. You might want this for the big list of coins. */
 img.smallcoin {
   width: 50px;
+}
+/* This makes the user's guessed coin transparent to distinguish it from the actual coin in the game. */
+img#callcoin {
+  opacity: 0.5;
 }
