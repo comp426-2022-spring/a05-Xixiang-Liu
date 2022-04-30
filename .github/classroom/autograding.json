@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Serving HTML",
+      "setup": "npm install",
+      "run": "PORT=\"$(shuf -i 2000-65535 -n 1)\"; (timeout --signal=SIGINT 5 node index.js --port=$PORT; exit 0) & sleep 1s && curl http://localhost:${PORT}/ && sleep 5s",
+      "input": "",
+      "output": "<!DOCTYPE html>",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 75000
+    }
+  ]
+}
