@@ -33,21 +33,18 @@ if (argument.help || argument.h) {
 
 // Server port
 const port = argument.port || argument.p || process.env.PORT || 5000
+
 // If --log=false then do not create a log file
 if (argument.log == 'false') {
     console.log("NOTICE: not creating file access.log")
-} else {
-// Use morgan for logging to files
-    const logdir = './log/';
-
-    if (!fs.existsSync(logdir)){
-        fs.mkdirSync(logdir);
-    }
-// Create a write stream to append to an access.log file
-    const accessLog = fs.createWriteStream( logdir+'access.log', { flags: 'a' })
-// Set up the access logging middleware
+} 
+else {
+    if (!fs.existsSync('./log/'))
+        fs.mkdirSync('./log/');
+    const accessLog = fs.createWriteStream( './log/access.log', { flags: 'a' })
     app.use(morgan('combined', { stream: accessLog }))
 }
+
 // Always log to database
 app.use((req, res, next) => {
     let logdata = {
