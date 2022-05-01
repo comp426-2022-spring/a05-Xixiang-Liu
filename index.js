@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 
-const args = require('minimist')(process.argv.slice(2))
+const argument = require('minimist')(process.argv.slice(2))
 const fs = require('fs')
 const morgan = require('morgan')
 const logdb = require('./src/services/database.js')
@@ -26,15 +26,15 @@ server.js [options]
 `)
 
 // If --help, echo help text and exit
-if (args.help || args.h) {
+if (argument.help || argument.h) {
     console.log(help)
     process.exit(0)
 }
 
 // Server port
-const port = args.port || args.p || process.env.PORT || 5000
+const port = argument.port || argument.p || process.env.PORT || 5000
 // If --log=false then do not create a log file
-if (args.log == 'false') {
+if (argument.log == 'false') {
     console.log("NOTICE: not creating file access.log")
 } else {
 // Use morgan for logging to files
@@ -147,7 +147,7 @@ app.get('/app/flip/call/:guess(heads|tails)/', (req, res, next) => {
     res.status(200).json(game)
 })
 
-if (args.debug || args.d) {
+if (argument.debug || argument.d) {
     app.get('/app/log/access/', (req, res, next) => {
         const stmt = logdb.prepare("SELECT * FROM accesslog").all();
 	    res.status(200).json(stmt);
