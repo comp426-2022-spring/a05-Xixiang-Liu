@@ -99,18 +99,37 @@ function coinFlips(flips) {
     return coins;
 }
 
-// Count coin flips
-function countFlips(array) {
-    let counter = {};
-    array.forEach(item => {
-        if (counter[item]) {
-            counter[item]++;
-        } else {
-            counter[item] = 1;
-        }
-    });
-    return counter;
-}
+/** Count multiple flips
+ * 
+ * Write a function that accepts an array consisting of "heads" or "tails" 
+ * (e.g. the results of your `coinFlips()` function) and counts each, returning 
+ * an object containing the number of each.
+ * 
+ * example: conutFlips(['heads', 'heads','heads', 'tails','heads', 'tails','tails', 'heads','tails', 'heads'])
+ * { tails: 5, heads: 5 }
+ * 
+ * @param {string[]} array 
+ * @returns {{ heads: number, tails: number }}
+ */
+
+ function countFlips(array) {
+    let heads = 0;
+    let tails = 0;
+    for (var i = 0; i < array.length; i++) {
+      if (array[i]=='heads') {
+        heads++;
+      } else if (array[i] == 'tails') {
+        tails++;
+      }
+    }
+    if (heads == 0) {
+      return {"tails": tails};
+    } else if (tails == 0) {
+      return {"heads": heads};
+    }
+    return {"heads": heads, "tails": tails};
+  }
+  
 // Call a coin flip
 function flipACoin(call) {
     let flip = coinFlip();
