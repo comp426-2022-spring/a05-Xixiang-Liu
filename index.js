@@ -61,14 +61,19 @@ app.use((req, res, next) => {
     };
     const stmt = logdb.prepare('INSERT INTO accesslog (remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referrer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
     const info = stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time, logdata.method, logdata.url, logdata.protocol, logdata.httpversion, logdata.status, logdata.referrer, logdata.useragent)
-    //console.log(info)
+    
     next();
 })
 
 // Flip one coin
 function coinFlip() {
-    return (Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails';
+    let coin = Math.floor(2*Math.random());
+    if (coin == 0)
+      return "heads";
+    else
+      return "tails";
 }
+
 // Flip many coins
 function coinFlips(flips) {
     let array = [];
