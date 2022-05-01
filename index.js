@@ -74,14 +74,31 @@ function coinFlip() {
       return "tails";
 }
 
-// Flip many coins
+/** Multiple coin flips
+ * 
+ * Write a function that accepts one parameter (number of flips) and returns an array of 
+ * resulting "heads" or "tails".
+ * 
+ * @param {number} flips 
+ * @returns {string[]} results
+ * 
+ * example: coinFlips(10)
+ * returns:
+ *  [
+      'heads', 'heads',
+      'heads', 'tails',
+      'heads', 'tails',
+      'tails', 'heads',
+      'tails', 'heads'
+    ]
+ */
 function coinFlips(flips) {
-    let array = [];
-    for (let i = 1; i <= flips; i++) {
-        array.push(coinFlip());
-    }
-    return array;
+    const coins = [];
+    for (let i = 0; i < flips; i++)
+        coins[i] = coinFlip();
+    return coins;
 }
+
 // Count coin flips
 function countFlips(array) {
     let counter = {};
