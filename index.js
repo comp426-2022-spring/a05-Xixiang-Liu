@@ -130,22 +130,23 @@ function coinFlips(flips) {
     return {"heads": heads, "tails": tails};
   }
   
-// Call a coin flip
-function flipACoin(call) {
+/** Flip a coin!
+ * 
+ * Write a function that accepts one input parameter: 
+ * a string either "heads" or "tails", flips a coin, and then records "win" or "lose". 
+ * 
+ * @param {string} call 
+ * @returns {object} with keys that are the input param (heads or tails), a flip (heads or tails), 
+ * and the result (win or lose). See below example.
+ * 
+ * example: flipACoin('tails')
+ * returns: { call: 'tails', flip: 'heads', result: 'lose' }
+ */
+
+ function flipACoin(call) {
     let flip = coinFlip();
-    let result;
-    if ( flip == call ) {
-        result = 'win'
-    } else {
-        result = 'lose'
-    }
-    let game = {
-        call: call,
-        flip: flip,
-        result: result
-    }
-    return game
-}
+    return {call: call, flip: flip, result: flip == call ? "win" : "lose" };
+  }
 
 // Serve static HTML public directory
 app.use(express.static('./public'))
