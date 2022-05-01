@@ -1,8 +1,12 @@
-// Require minimist module (make sure you install this one via npm).
-// Require minimist module
+const express = require('express')
+const app = express()
+app.use(express.json())
+
 const args = require('minimist')(process.argv.slice(2))
-// See what is stored in the object produced by minimist
-//console.log('Command line arguments: ', args)
+const fs = require('fs')
+const morgan = require('morgan')
+const logdb = require('./src/services/database.js')
+
 // Store help text 
 const help = (`
 server.js [options]
@@ -21,20 +25,7 @@ if (args.help || args.h) {
     console.log(help)
     process.exit(0)
 }
-// Define app using express
-var express = require('express')
-var app = express()
-// Require fs
-const fs = require('fs')
-// Require morgan
-const morgan = require('morgan')
-// Require database SCRIPT file
-const logdb = require('./src/services/database.js')
-// Make Express use its own built-in body parser
-// Allow urlencoded body messages
-//app.use(express.urlencoded({ extended: true }));
-// Allow json body messages
-app.use(express.json());
+
 // Server port
 const port = args.port || args.p || process.env.PORT || 5000
 // If --log=false then do not create a log file
