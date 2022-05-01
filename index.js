@@ -7,6 +7,9 @@ const fs = require('fs')
 const morgan = require('morgan')
 const logdb = require('./src/services/database.js')
 
+// Serve static HTML public directory
+app.use(express.static('./public'))
+
 // Store help text 
 const help = (`
 server.js [options]
@@ -143,18 +146,17 @@ function coinFlips(flips) {
  * returns: { call: 'tails', flip: 'heads', result: 'lose' }
  */
 
- function flipACoin(call) {
+function flipACoin(call) {
     let flip = coinFlip();
     return {call: call, flip: flip, result: flip == call ? "win" : "lose" };
-  }
+}
 
-// Serve static HTML public directory
-app.use(express.static('./public'))
-
-// READ (HTTP method GET) at root endpoint /app/
-app.get("/app/", (req, res, next) => {
-    res.json({"message":"Your API works! (200)"});
-	res.status(200);
+// Check status code endpoint
+app.get('/app/', (req, res) => {
+    res.statusCode = 200;
+    res.statusMessage = "Your API works! (200)";
+    res.writeHead(res.statusCode, { 'Content-Type' : 'text/plain'});
+    res.end(res.statusCode+ ' ' +res.statusMessage)
 });
 
 // Endpoint /app/flip/ that returns JSON {"flip":"heads"} or {"flip":"tails"} 
