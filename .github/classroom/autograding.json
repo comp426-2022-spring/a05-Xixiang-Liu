@@ -8,7 +8,27 @@
       "output": "<!DOCTYPE html>",
       "comparison": "included",
       "timeout": 10,
-      "points": 75000
+      "points": 83334
+    },
+    {
+      "name": "Yes. That is really all.",
+      "setup": "",
+      "run": "printf -- \"Yes. I actually lowered the bar for passing this assignment to getting the server up and running to serve the HTML, JS, and CSS files in the ./public directory. That's it.\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    },
+    {
+      "name": "Example code",
+      "setup": "",
+      "run": "printf -- \"If you want to see a working example of this and other demo code from this semester, check this out:\\n\\nhttps://github.com/jdmar3/coinserver\\n\\nYou're welcome.\\n\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
     }
   ]
 }
